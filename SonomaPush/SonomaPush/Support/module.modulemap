@@ -1,0 +1,8 @@
+framework module SonomaPush {
+  umbrella header "SonomaPush.h"
+  
+  export *
+  module * { export * }
+  
+  link framework "Foundation"
+}

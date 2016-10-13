@@ -11,6 +11,9 @@
       location = "group:SonomaCrashes/SonomaCrashes.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:SonomaPush/SonomaPush.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Puppet/Puppet.xcodeproj">
    </FileRef>
    <FileRef

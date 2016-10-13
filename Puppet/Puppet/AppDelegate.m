@@ -3,9 +3,11 @@
 #import "SonomaAnalytics.h"
 #import "SonomaCore.h"
 #import "SonomaCrashes.h"
+#import "SonomaPush.h"
 
 #import "SNMErrorAttachment.h"
 #import "SNMErrorReport.h"
+#import <UserNotifications/UserNotifications.h>
 
 @interface AppDelegate ()
 
@@ -18,7 +20,8 @@
   // Start Sonoma SDK.
   [SNMSonoma setLogLevel:SNMLogLevelVerbose];
 
-  [SNMSonoma start:@"7dfb022a-17b5-4d4a-9c75-12bc3ef5e6b7" withFeatures:@[ [SNMAnalytics class], [SNMCrashes class] ]];
+  [SNMSonoma setServerUrl:@"http://in-memoz-001.dev.avalanch.es:8081"];
+  [SNMSonoma start:@"90fa0c95-114d-4c26-91f0-5d0411c49bd7" withFeatures:@[ [SNMAnalytics class], [SNMCrashes class], [SNMPush class]]];
 
   if ([SNMCrashes hasCrashedInLastSession]) {
     SNMErrorReport *errorReport = [SNMCrashes lastSessionCrashReport];
@@ -27,37 +30,34 @@
 
   // Print the install Id.
   NSLog(@"%@ Install Id: %@", kPUPLogTag, [[SNMSonoma installId] UUIDString]);
+  
+  [SNMPush registerPush];
+
   return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-  // Sent when the application is about to move from active to inactive state. This can occur for certain types of
-  // temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and
-  // it begins the transition to the background state.
-  // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use
-  // this method to pause the game.
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+  [SNMPush didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-  // Use this method to release shared resources, save user data, invalidate timers, and store enough application state
-  // information to restore your application to its current state in case it is terminated later.
-  // If your application supports background execution, this method is called instead of applicationWillTerminate: when
-  // the user quits.
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+  [SNMPush didFailToRegisterForRemoteNotificationsWithError:error];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-  // Called as part of the transition from the background to the inactive state; here you can undo many of the changes
-  // made on entering the background.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification: (NSDictionary *)userInfo {
+  NSLog(@"%@", userInfo);
+  [self MessageBox:@"Notification" message:[[userInfo objectForKey:@"aps"] valueForKey:@"alert"]];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-  // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was
-  // previously in the background, optionally refresh the user interface.
+-(void)MessageBox:(NSString *)title message:(NSString *)messageText
+{
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:messageText delegate:self
+                                        cancelButtonTitle:@"OK" otherButtonTitles: nil];
+  [alert show];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-  // Called when the application is about to terminate. Save data if appropriate. See also
-  // applicationDidEnterBackground:.
-}
 
 @end

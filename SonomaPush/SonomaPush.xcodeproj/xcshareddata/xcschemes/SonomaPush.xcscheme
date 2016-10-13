@@ -15,9 +15,23 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E85547BF1D2D6253002DF6E2"
-               BuildableName = "libSonomaAnalytics.a"
-               BlueprintName = "SonomaAnalytics"
-               ReferencedContainer = "container:SonomaAnalytics.xcodeproj">
+               BuildableName = "libSonomaPush.a"
+               BlueprintName = "SonomaPush"
+               ReferencedContainer = "container:SonomaPush.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E85547D41D2D6723002DF6E2"
+               BuildableName = "SonomaPush.xctest"
+               BlueprintName = "SonomaPushTests"
+               ReferencedContainer = "container:SonomaPush.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,21 +48,12 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E85547D41D2D6723002DF6E2"
-               BuildableName = "SonomaCrashes.xctest"
-               BlueprintName = "SonomaAnalyticsTests"
-               ReferencedContainer = "container:SonomaAnalytics.xcodeproj">
+               BuildableName = "SonomaPush.xctest"
+               BlueprintName = "SonomaPushTests"
+               ReferencedContainer = "container:SonomaPush.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E85547BF1D2D6253002DF6E2"
-            BuildableName = "libSonomaAnalytics.a"
-            BlueprintName = "SonomaAnalytics"
-            ReferencedContainer = "container:SonomaAnalytics.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -66,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E85547BF1D2D6253002DF6E2"
-            BuildableName = "libSonomaAnalytics.a"
-            BlueprintName = "SonomaAnalytics"
-            ReferencedContainer = "container:SonomaAnalytics.xcodeproj">
+            BuildableName = "libSonomaPush.a"
+            BlueprintName = "SonomaPush"
+            ReferencedContainer = "container:SonomaPush.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -84,9 +89,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E85547BF1D2D6253002DF6E2"
-            BuildableName = "libSonomaAnalytics.a"
-            BlueprintName = "SonomaAnalytics"
-            ReferencedContainer = "container:SonomaAnalytics.xcodeproj">
+            BuildableName = "libSonomaPush.a"
+            BlueprintName = "SonomaPush"
+            ReferencedContainer = "container:SonomaPush.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
