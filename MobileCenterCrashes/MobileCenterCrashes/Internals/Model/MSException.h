@@ -30,6 +30,11 @@
 @property(nonatomic, nullable) NSArray<MSException *> *innerExceptions;
 
 /*
+ * Raw stack trace sent from wrapper SDK. Sent when the frames property is either missing or unreliable [optional].
+ */
+@property(nonatomic, nullable) NSString *rawStackTrace;
+
+/*
  * Name of the wrapper SDK that emitted this exeption.
  * Consists of the name of the SDK and the wrapper platform, e.g. "mobilecenter.xamarin", "hockeysdk.cordova".
  */

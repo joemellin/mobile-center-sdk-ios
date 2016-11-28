@@ -10,6 +10,7 @@ static NSString *const kMSMessage = @"message";
 static NSString *const kMSWrapperSDKName = @"wrapper_sdk_name";
 static NSString *const kMSFrames = @"frames";
 static NSString *const kMSInnerExceptions = @"inner_exceptions";
+static NSString *const kMSStackTrace = @"stack_trace";
 
 @implementation MSException
 
@@ -40,6 +41,9 @@ static NSString *const kMSInnerExceptions = @"inner_exceptions";
     }
     dict[kMSInnerExceptions] = exceptionsArray;
   }
+  if (self.rawStackTrace) {
+    dict[kMSStackTrace] = self.rawStackTrace;
+  }
 
   return dict;
 }
@@ -58,7 +62,9 @@ static NSString *const kMSInnerExceptions = @"inner_exceptions";
   ((!self.message && !exception.message) || [self.message isEqualToString:exception.message]) &&
   ((!self.frames && !exception.frames) || [self.frames isEqualToArray:exception.frames]) &&
   ((!self.innerExceptions && !exception.innerExceptions) ||
-   [self.innerExceptions isEqualToArray:exception.innerExceptions]);
+   [self.innerExceptions isEqualToArray:exception.innerExceptions]) &&
+  ((!self.rawStackTrace && !exception.rawStackTrace) ||
+   [self.rawStackTrace isEqualToString:exception.rawStackTrace]);
 }
 
 #pragma mark - NSCoding
@@ -71,6 +77,7 @@ static NSString *const kMSInnerExceptions = @"inner_exceptions";
     _wrapperSdkName = [coder decodeObjectForKey:kMSWrapperSDKName];
     _frames = [coder decodeObjectForKey:kMSFrames];
     _innerExceptions = [coder decodeObjectForKey:kMSInnerExceptions];
+    _rawStackTrace = [coder decodeObjectForKey:kMSStackTrace];
   }
   return self;
 }
@@ -81,6 +88,7 @@ static NSString *const kMSInnerExceptions = @"inner_exceptions";
   [coder encodeObject:self.message forKey:kMSMessage];
   [coder encodeObject:self.frames forKey:kMSFrames];
   [coder encodeObject:self.innerExceptions forKey:kMSInnerExceptions];
+  [coder encodeObject:self.rawStackTrace forKey:kMSStackTrace];
 }
 
 @end
